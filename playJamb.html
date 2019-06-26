@@ -1,0 +1,1624 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Play Jamb!</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="icon" type="image/png" href="pictures/jamb.png" sizes="30x30">
+	<link rel="stylesheet" type="text/css" href="bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="playJamb.css">
+  <!-- google fonts  -->
+  <link href="https://fonts.googleapis.com/css?family=Merriweather|Rubik+Mono+One&display=swap" rel="stylesheet">
+</head>
+<body>
+
+
+<div id="rules" class="container">
+   <h2>Rules</h2>
+   <p>This is JAMB game for two players.</p>
+   <p>Roll dices for scoring combinations, and get the highest total score.</p>
+   <p>On each turn, roll the dice up to 3 times to get the highest scoring
+      combination for one of 13 categories in 4 columns. After you finish rolling,
+      you must place a score or a zero in one of the 13 category boxes on your
+      score card. The game ends when both players have filled in their boxes. 
+      Scores are totaled, including any bonus points. The player with the 
+      highest total wins.</p>
+   <p>On your turn, you may roll the dice up to 3 times, 
+      although you may stop and score after your first or second roll. 
+      To roll the dice, just press the Roll button next to the dices. 
+      First roll: Roll all 6 dice. Set any "keepers" aside, just click on dice you want
+      to stay in game. You may stop and score now, or roll again.
+      Second roll: Reroll ANY or ALL dice you want — even "keepers" from the previous roll.
+      You don't need to declare which combination you're rolling for; you may change
+      your mind after any roll. You may stop and score after your second roll, or set aside
+      any "keepers" and roll a third time.
+      Third and final roll: Reroll ANY or ALL dice you want. Double click on dice you want
+      to return in game again.
+      After your third roll, you must fill in a box on your score card with a score or a zero.
+      After you fill in a box, your turn is over, click on Next Player and then
+      is second player turn.</p>
+      <p>When you are finished rolling, decide which box to fill in on your score card.
+        For each game, there is a 4 columns with 13 boxes/categories. You must fill in a
+        box on each turn; if you can't (or don't want to) enter a score, you must enter a zero.
+        Fill in each box only once, in any order allowed by column rule, depending on your
+        best scoring option. The scoring by categories and columns are described below</p>
+   <button class="rules-button" onclick="playGame()">play the game</button>
+</div>  
+  
+<div id="game" class="container-fluid">
+
+
+<!-- first player -->
+  <div id="player1active" class="player-0 activePl col-xs-12 col-sm-4">
+	 <div id="player-panel" class="nextPl1">Player 1</div>
+
+     <div class="row">
+      <ul class="right">
+       <li id="grey" class="col-xs-1">GAME</li>
+       <li id="grey" class="col-xs-1">DOWN</li>
+       <li id="grey" class="col-xs-1">FREE</li>
+       <li id="grey" class="col-xs-1">UP</li>
+       <li id="grey" class="col-xs-1">HAND</li>
+       <li id="grey" class="col-xs-1">SUM</li>             
+      </ul> 
+		 </div>
+
+    
+<!-- first row - number 1 -->
+<div class="row"> 
+      <ul class="right">
+        <li id="grey" class="col-xs-1">1</li> 
+
+<!-- column down -->
+<li class="col-xs-1">
+  <a class="dropdown-toggle" data-toggle="dropdown" href="">
+  <span id="downOneValue" class="caret" onclick="downOne()"></span></a>
+  <ul class="dropdown-menu">
+    <input style="width: 35px;" id="down1" type="number" min="0" max="5" value="0">
+    <button id="okButton" class="btn btn-primary" onclick="resultOneDown()">OK</button>
+  </ul>
+</li>                                                          
+<!-- end of column down -->
+
+<!-- column free -->
+<li class="col-xs-1">
+  <a class="dropdown-toggle" data-toggle="dropdown" href="">
+  <span id="freeOneValue" class="caret" onclick="freeOne()"></span></a>
+  <ul class="dropdown-menu">
+     <input style="width: 35px;" id="free1" type="number" min="0" max="5" value="0">
+     <button id="okButton" class="btn btn-primary" onclick="resultOneFree()">OK</button>
+  </ul>
+</li> 
+<!-- end of column free -->
+
+<!-- column up -->
+<li class="col-xs-1">
+  <a class="dropdown-toggle" data-toggle="dropdown" href="">
+  <span id="upOneValue" class="caret" onclick="upOne()"></span></a>
+  <ul class="dropdown-menu">
+     <input style="width: 35px;" id="up1" type="number" min="0" max="5" value="0">
+     <button id="okButton" class="btn btn-primary" onclick="resultOneUp()">OK</button>
+  </ul>
+</li> 
+<!-- end of column up -->
+
+<!-- column hand -->
+<li class="col-xs-1">
+  <a class="dropdown-toggle" data-toggle="dropdown" href="">
+  <span id="handOneValue" class="caret" onclick="handOne()"></span></a>
+  <ul class="dropdown-menu">
+     <input style="width: 35px;" id="hand1" type="number" min="0" max="5" value="0">
+     <button id="okButton" class="btn btn-primary" onclick="resultOneHand()">OK</button>
+  </ul>
+</li> 
+<!-- end of column hand -->
+
+        <li id="lightGrey" class="col-xs-1"></li> 
+      </ul>       
+</div>
+<!-- END of the first row - number 1 -->
+
+<!-- second row - number 2 -->
+<div class="row">
+      <ul class="right">
+        <li id="grey" class="col-xs-1">2</li> 
+
+<!-- column down 2-->
+<li class="col-xs-1">
+  <a class="dropdown-toggle" data-toggle="dropdown" href="">
+  <span id="downTwoValue" class="caret one" onclick="downTwo()"></span></a>
+  <ul class="dropdown-menu">
+   <input style="width: 37px;" id="down2" type="number" min="0" max="10" step="2" value="0">
+   <button id="okButton" class="btn btn-primary" onclick="resultTwoDown()">OK</button>
+ </ul>
+</li>  
+<!-- end of column down -->
+
+<!-- column free 2-->
+<li class="col-xs-1">
+  <a class="dropdown-toggle" data-toggle="dropdown" href="">
+  <span id="freeTwoValue" class="caret one" onclick="freeTwo()"></span></a>
+  <ul class="dropdown-menu">
+    <input style="width: 37px;" id="free2" type="number" min="0" max="10" step="2" value="0">
+    <button id="okButton" class="btn btn-primary" onclick="resultTwoFree()">OK</button>
+  </ul>
+  </li>  
+<!-- end of column free -->
+
+<!-- column up 2-->
+<li class="col-xs-1">
+  <a class="dropdown-toggle" data-toggle="dropdown" href="">
+  <span id="upTwoValue" class="caret" onclick="upTwo()"></span></a>
+  <ul class="dropdown-menu">
+    <input style="width: 37px;" id="up2" type="number" min="0" max="10" step="2" value="0">
+    <button id="okButton" class="btn btn-primary" onclick="resultTwoUp()">OK</button>
+  </ul>
+</li>  
+<!-- end of column up -->
+
+<!-- column hand 2-->
+<li class="col-xs-1">
+  <a class="dropdown-toggle" data-toggle="dropdown" href="">
+  <span id="handTwoValue" class="caret one" onclick="handTwo()"></span></a>
+  <ul class="dropdown-menu">
+    <input style="width: 37px;" id="hand2" type="number" min="0" max="10" step="2" value="0">
+    <button id="okButton" class="btn btn-primary" onclick="resultTwoHand()">OK</button>
+  </ul>
+</li>  
+<!-- end of column hand -->
+
+        <li id="lightGrey" class="col-xs-1"></li> 
+      </ul>       
+</div>
+<!-- END of the second row - number 2 -->
+
+<!-- third row - number 3 -->
+<div class="row"> 
+      <ul class="right">
+        <li id="grey" class="col-xs-1">3</li> 
+
+<!-- column down 3-->
+<li class="col-xs-1">
+  <a class="dropdown-toggle" data-toggle="dropdown" href="">
+  <span id="downThreeValue" class="caret" onclick="downThree()"></span></a>
+  <ul class="dropdown-menu">
+    <input style="width: 37px;" id="down3" type="number"  min="0" max="15" step="3" value="0">
+    <button id="okButton" class="btn btn-primary" onclick="resultThreeDown()">OK</button>
+  </ul>
+</li>                                                       
+<!-- end of column down -->
+
+<!-- column free 3-->
+<li class="col-xs-1">
+    <a class="dropdown-toggle" data-toggle="dropdown" href="">
+    <span id="freeThreeValue" class="caret" onclick="freeThree()"></span></a>
+    <ul class="dropdown-menu">
+      <input style="width: 37px;" id="free3" type="number"  min="0" max="15" step="3" value="0">
+      <button id="okButton" class="btn btn-primary" onclick="resultThreeFree()">OK</button>
+    </ul>
+  </li>                                                       
+  <!-- end of column free -->
+
+  <!-- column up 3-->
+<li class="col-xs-1">
+    <a class="dropdown-toggle" data-toggle="dropdown" href="">
+    <span id="upThreeValue" class="caret" onclick="upThree()"></span></a>
+    <ul class="dropdown-menu">
+      <input style="width: 37px;" id="up3" type="number"  min="0" max="15" step="3" value="0">
+      <button id="okButton" class="btn btn-primary" onclick="resultThreeUp()">OK</button>
+    </ul>
+  </li>                                                       
+  <!-- end of column up -->
+
+<!-- column hand 3-->
+<li class="col-xs-1">
+    <a class="dropdown-toggle" data-toggle="dropdown" href="">
+    <span id="handThreeValue" class="caret" onclick="handThree()"></span></a>
+    <ul class="dropdown-menu">
+      <input style="width: 37px;" id="hand3" type="number"  min="0" max="15" step="3" value="0">
+      <button id="okButton" class="btn btn-primary" onclick="resultThreeHand()">OK</button>
+    </ul>
+  </li>                                                       
+  <!-- end of column hand -->
+
+        <li id="lightGrey" class="col-xs-1"></li> 
+      </ul>       
+</div>
+<!-- END of the third row - number 3 -->
+
+<!-- fourth row - number 4 -->
+<div class="row"> 
+      <ul class="right">
+        <li id="grey" class="col-xs-1">4</li> 
+
+<!-- column down 4 -->
+<li class="col-xs-1">
+  <a class="dropdown-toggle" data-toggle="dropdown" href="">
+  <span id="downFourValue" class="caret" onclick="downFour()"></span></a>
+  <ul class="dropdown-menu">
+    <input style="width: 37px;" id="down4" type="number" min="0" max="20" step="4" value="0">
+    <button id="okButton" class="btn btn-primary" onclick="resultFourDown()">OK</button>
+  </ul>
+</li>                                                           
+<!-- end of column down -->
+
+<!-- column free 4 -->
+<li class="col-xs-1">
+    <a class="dropdown-toggle" data-toggle="dropdown" href="">
+    <span id="freeFourValue" class="caret" onclick="freeFour()"></span></a>
+    <ul class="dropdown-menu">
+      <input style="width: 37px;" id="free4" type="number" min="0" max="20" step="4" value="0">
+      <button id="okButton" class="btn btn-primary" onclick="resultFourFree()">OK</button>
+    </ul>
+</li>  
+<!-- end of column free -->
+
+<!-- column up 4 -->
+<li class="col-xs-1">
+    <a class="dropdown-toggle" data-toggle="dropdown" href="">
+    <span id="upFourValue" class="caret" onclick="upFour()"></span></a>
+    <ul class="dropdown-menu">
+      <input style="width: 37px;" id="up4" type="number" min="0" max="20" step="4" value="0">
+      <button id="okButton" class="btn btn-primary" onclick="resultFourUp()">OK</button>
+    </ul>
+  </li>  
+<!-- end of column up -->
+
+<!--column hand 4 -->
+<li class="col-xs-1">
+    <a class="dropdown-toggle" data-toggle="dropdown" href="">
+    <span id="handFourValue" class="caret" onclick="handFour()"></span></a>
+    <ul class="dropdown-menu">
+      <input style="width: 37px;" id="hand4" type="number" min="0" max="20" step="4" value="0">
+      <button id="okButton" class="btn btn-primary" onclick="resultFourHand()">OK</button>
+    </ul>
+</li>  
+<!-- end of column hand -->
+
+        <li id="lightGrey" class="col-xs-1"></li> 
+      </ul>       
+</div>
+<!-- END of the fourth row - number 4 -->
+
+<!-- fifth row - number 5 -->
+<div class="row"> 
+      <ul class="right">
+        <li id="grey" class="col-xs-1">5</li> 
+
+<!-- column down 5 -->
+<li class="col-xs-1">
+  <a class="dropdown-toggle" data-toggle="dropdown" href="">
+  <span id="downFiveValue" class="caret" onclick="downFive()"></span></a>
+  <ul class="dropdown-menu">
+    <input style="width: 37px;" id="down5" type="number" min="0" max="25" step="5" value="0">
+    <button id="okButton" class="btn btn-primary" onclick="resultFiveDown()">OK</button>
+  </ul>
+</li>                                                           
+<!-- end of column down -->
+
+<!-- column free 5 -->
+<li class="col-xs-1">
+    <a class="dropdown-toggle" data-toggle="dropdown" href="">
+    <span id="freeFiveValue" class="caret" onclick="freeFive()"></span></a>
+    <ul class="dropdown-menu">
+      <input style="width: 37px;" id="free5" type="number" min="0" max="25" step="5" value="0">
+      <button id="okButton" class="btn btn-primary" onclick="resultFiveFree()">OK</button>
+    </ul>
+</li>                                                           
+<!-- end of column free -->
+
+<!-- column up 5 -->
+<li class="col-xs-1">
+    <a class="dropdown-toggle" data-toggle="dropdown" href="">
+    <span id="upFiveValue" class="caret" onclick="upFive()"></span></a>
+    <ul class="dropdown-menu">
+      <input style="width: 37px;" id="up5" type="number" min="0" max="25" step="5" value="0">
+      <button id="okButton" class="btn btn-primary" onclick="resultFiveUp()">OK</button>
+    </ul>
+</li>                                                           
+<!-- end of column up -->
+
+<!-- column hand 5 -->
+<li class="col-xs-1">
+    <a class="dropdown-toggle" data-toggle="dropdown" href="">
+    <span id="handFiveValue" class="caret" onclick="handFive()"></span></a>
+    <ul class="dropdown-menu">
+      <input style="width: 37px;" id="hand5" type="number" min="0" max="25" step="5" value="0">
+      <button id="okButton" class="btn btn-primary" onclick="resultFiveHand()">OK</button>
+    </ul>
+</li>                                                           
+<!-- end of column down -->
+
+        <li id="lightGrey" class="col-xs-1"></li> 
+      </ul>       
+</div>
+<!-- END of the fifth row - number 3 -->
+
+<!-- sixth row -->
+<div class="row"> 
+      <ul class="right">
+        <li id="grey" class="col-xs-1">6</li> 
+
+<!-- column down 6 -->
+<li class="col-xs-1">
+  <a class="dropdown-toggle" data-toggle="dropdown" href="">
+  <span id="downSixValue" class="caret" onclick="downSix()"></span></a>
+  <ul class="dropdown-menu">
+    <input style="width: 37px;" id="down6" type="number" min="0" max="30" step="6" value="0">
+    <button id="okButton" class="btn btn-primary" onclick="resultSixDown()">OK</button>
+  </ul>
+</li>                                                            
+<!-- end of column down 6 -->
+
+<!-- column free 6 -->
+<li class="col-xs-1">
+    <a class="dropdown-toggle" data-toggle="dropdown" href="">
+    <span id="freeSixValue" class="caret" onclick="freeSix()"></span></a>
+    <ul class="dropdown-menu">
+      <input style="width: 37px;" id="free6" type="number" min="0" max="30" step="6" value="0">
+      <button id="okButton" class="btn btn-primary" onclick="resultSixFree()">OK</button>
+    </ul>
+</li>                                                            
+<!-- end of column free 6 -->
+
+<!-- column up 6 -->
+<li class="col-xs-1">
+    <a class="dropdown-toggle" data-toggle="dropdown" href="">
+    <span id="upSixValue" class="caret" onclick="upSix()"></span></a>
+    <ul class="dropdown-menu">
+      <input style="width: 37px;" id="up6" type="number" min="0" max="30" step="6" value="0">
+      <button id="okButton" class="btn btn-primary" onclick="resultSixUp()">OK</button>
+    </ul>
+  </li>                                                            
+  <!-- end of column up 6 -->
+
+<!-- column hand 6 -->
+<li class="col-xs-1">
+    <a class="dropdown-toggle" data-toggle="dropdown" href="">
+    <span id="handSixValue" class="caret" onclick="handSix()"></span></a>
+    <ul class="dropdown-menu">
+      <input style="width: 37px;" id="hand6" type="number" min="0" max="30" step="6" value="0">
+      <button id="okButton" class="btn btn-primary" onclick="resultSixHand()">OK</button>
+    </ul>
+</li>                                                            
+<!-- end of column hand 6 -->  
+
+        <li id="lightGrey" class="col-xs-1"></li> 
+      </ul>       
+</div>
+<!-- END of the sixth row - number 6 -->
+
+<!-- sum of the first part -->
+<div class="row">
+      <ul class="right">
+       <li id="grey" class="col-xs-1">SUM</li>
+       <li id="grey" class="sumDownFirst col-xs-1"></li>
+       <li id="grey" class="sumFreeFirst col-xs-1"></li>
+       <li id="grey" class="sumUpFirst col-xs-1"></li>
+       <li id="grey" class="sumHandFirst col-xs-1"></li>
+       <li id="grey" class="sumAllFirst col-xs-1"></li>             
+      </ul> 
+</div> 
+<!-- end of the first part -->
+
+<!-- maximum and minimum - second part -->
+<!-- MAXIMUM ROW -->
+<div class="row"> 
+      <ul class="right">
+        <li id="grey" class="col-xs-1">MAX</li> 
+
+<!-- MAXIMUM column DOWN-->
+<li class="col-xs-1">
+  <a class="dropdown-toggle" data-toggle="dropdown" href="">
+  <span id="downMaximum" class="caret" onclick="downMax()"></span></a>
+  <ul class="dropdown-menu">
+      <input style="width: 37px;" id="maximumDown" type="number" max="30" min="5" value="30">
+      <button id="okButton" class="btn btn-primary" onclick="maxResult()">OK</button>          
+  </ul>
+</li>                                                          
+
+<!-- MAXIMUM column FREE -->
+<li class="col-xs-1">
+  <a class="dropdown-toggle" data-toggle="dropdown" href="">
+  <span id="freeMaximum" class="caret" onclick="freeMax()"></span></a>
+  <ul class="dropdown-menu">
+    <input style="width: 37px;" id="maximumFree" type="number" max="30" min="5"  value="30">
+    <button id="okButton" class="btn btn-primary" onclick="maxResultFree()">OK</button>          
+  </ul>
+</li>
+
+<!-- MAXIMUM column UP-->
+<li class="col-xs-1">
+  <a class="dropdown-toggle" data-toggle="dropdown" href="">
+  <span id="upMaximum" class="caret" onclick="upMax()"></span></a>
+  <ul class="dropdown-menu">
+    <input style="width: 37px;" id="maximumUp" type="number" max="30" min="5" value="30">
+    <button id="okButton" class="btn btn-primary" onclick="maxResultUp()">OK</button>          
+  </ul>
+</li>
+
+<!-- MAXIMUM column HAND-->
+<li class="col-xs-1">
+  <a class="dropdown-toggle" data-toggle="dropdown" href="">
+  <span id="handMaximum" class="caret" onclick="handMax()"></span></a>
+  <ul class="dropdown-menu">
+    <input style="width: 37px;" id="maximumHand" type="number" max="30" min="5" value="30">
+    <button id="okButton" class="btn btn-primary" onclick="maxResultHand()">OK</button>          
+  </ul>
+</li>
+
+        <li id="lightGrey" class="col-xs-1"></li> 
+      </ul>       
+</div>
+<!-- END of MAXIMUM row -->
+
+
+<!-- MINIMUM ROW -->
+<div class="row"> 
+      <ul class="right">
+        <li id="grey" class="col-xs-1">MIN</li> 
+
+<!-- MINIMUM column DOWN-->
+<li class="col-xs-1">
+  <a class="dropdown-toggle" data-toggle="dropdown" href="">
+  <span id="downMinimum" class="caret" onclick="downMin()"></span></a>
+  <ul class="dropdown-menu">
+    <input style="width: 37px" style="width: 35px;" id="minimumDown" type="number" min="5" max="30" value="5">
+    <button id="okButton" class="btn btn-primary" onclick="minResultDown()">OK</button>      
+  </ul>
+</li>                                                          
+
+<!-- MINIMUM column FREE-->
+<li class="col-xs-1">
+  <a class="dropdown-toggle" data-toggle="dropdown" href="">
+  <span id="freeMinimum" class="caret" onclick="freeMin()"></span></a>
+  <ul class="dropdown-menu">
+    <input style="width: 37px" style="width: 35px;" id="minimumFree" type="number" min="5" max="30" value="5">
+    <button id="okButton" class="btn btn-primary" onclick="minResultFree()">OK</button>      
+  </ul>
+</li>  
+
+<!-- MINIMUM column UP-->
+<li class="col-xs-1">
+  <a class="dropdown-toggle" data-toggle="dropdown" href="">
+  <span id="upMinimum" class="caret" onclick="upMin()"></span></a>
+    <ul class="dropdown-menu">
+      <input style="width: 37px" id="minimumUp" type="number" min="5" max="30" value="5">
+      <button id="okButton" class="btn btn-primary" onclick="minResultUp()">OK</button>      
+    </ul>
+</li>  
+
+<!-- MINIMUM column HAND-->
+<li class="col-xs-1">
+  <a class="dropdown-toggle" data-toggle="dropdown" href="">
+  <span id="handMinimum" class="caret" onclick="handMin()"></span></a>
+  <ul class="dropdown-menu">
+    <input style="width: 37px" id="minimumHand" type="number" min="5" max="30" value="5">
+    <button id="okButton" class="btn btn-primary" onclick="minResultHand()">OK</button>      
+  </ul>
+</li>  
+
+        <li id="lightGrey" class="col-xs-1"></li> 
+      </ul>       
+</div>
+<!-- END of MINIMUM row -->
+
+<!-- sum of the second part -->
+<div class="row">
+      <ul class="right">
+       <li id="grey" class="col-xs-1">SUM</li>
+       <li id="grey" class="mulDown1 col-xs-1"></li>
+       <li id="grey" class="mulFree1 col-xs-1"></li>
+       <li id="grey" class="mulUp1 col-xs-1"></li>
+       <li id="grey" class="mulHand1 col-xs-1"></li>
+       <li id="grey" class="mulAll1 col-xs-1"></li>             
+      </ul> 
+</div> 
+
+
+<!-- Third part -->
+<!-- KENTA -->
+<div class="row"> 
+      <ul class="right">
+        <li id="grey" class="col-xs-1">KENTA</li> 
+
+<!-- column down -->        
+<li class="col-xs-1">
+  <a class="dropdown-toggle" data-toggle="dropdown" href="">
+  <span id="downKentaValue" class="caret" onclick="downKenta()"></span></a>
+  <ul class="dropdown-menu">
+    <input style="width: 37px" id="downKenta" type="number" min="46" max="66" step="10" value="0">
+    <button style="width: 70px" id="okButton" class="btn btn-primary" onclick="resultKentaDown()">OK</button>
+  </ul>
+  
+</li>                                                       
+
+<!-- column free -->
+<li class="col-xs-1">
+  <a class="dropdown-toggle" data-toggle="dropdown" href="">
+  <span id="freeKentaValue" class="caret" onclick="freeKenta()"></span></a>
+  <ul class="dropdown-menu">
+    <input style="width: 37px" id="freeKenta" type="number" min="46" max="66" step="10" value="0">
+    <button id="okButton" class="btn btn-primary" onclick="resultKentaFree()">OK</button>
+  </ul>
+  
+</li>
+
+<!-- column up -->        
+<li class="col-xs-1">
+  <a class="dropdown-toggle" data-toggle="dropdown" href="">
+  <span id="upKentaValue" class="caret" onclick="upKenta()"></span></a>
+  <ul class="dropdown-menu">
+    <input style="width: 37px" id="upKenta" type="number" min="46" max="66" step="10" value="0">
+    <button id="okButton" class="btn btn-primary" onclick="resultKentaUp()">OK</button>
+  </ul>
+  
+</li>
+
+<!-- columnn hand -->        
+<li class="col-xs-1">
+  <a class="dropdown-toggle" data-toggle="dropdown" href="">
+  <span id="handKentaValue" class="caret" onclick="handKenta()"></span></a>
+  <ul class="dropdown-menu">
+    <input style="width: 37px" id="handKenta" type="number" min="46" max="66" step="10" value="0">
+    <button id="okButton" class="btn btn-primary" onclick="resultKentaHand()">OK</button>
+  </ul>
+  
+</li>
+
+        <li id="lightGrey" class="col-xs-1"></li> 
+      </ul>       
+</div>
+<!-- END of KENTA row -->
+
+<!-- TRILING -->
+<div class="row"> 
+  <ul class="right">
+    <li id="grey" class="col-xs-1">TRILL</li> 
+
+<!-- column down -->        
+<li class="col-xs-1">
+  <a class="dropdown-toggle" data-toggle="dropdown" href="">
+  <span id="downTrillingValue" class="caret" onclick="downTrilling()"></span></a>
+  <ul class="dropdown-menu">
+    <input style="width: 37px" style="width: 37px" id="downTrilling" type="number" min="23" max="38" step="3" value="0">
+    <button style="width: 70px" id="okButton" class="btn btn-primary" onclick="resultTrillingDown()">OK</button>
+  </ul>
+
+</li>                                                       
+
+<!-- column free -->
+<li class="col-xs-1">
+  <a class="dropdown-toggle" data-toggle="dropdown" href="">
+  <span id="freeTrillingValue" class="caret" onclick="freeTrilling()"></span></a>
+  <ul class="dropdown-menu">
+    <input style="width: 37px" id="freeTrilling" type="number" min="23" max="38" step="3" value="0">
+    <button id="okButton" class="btn btn-primary" onclick="resultTrillingFree()">OK</button>
+  </ul>
+
+</li>
+
+<!-- column up -->        
+<li class="col-xs-1">
+  <a class="dropdown-toggle" data-toggle="dropdown" href="">
+  <span id="upTrillingValue" class="caret" onclick="upTrilling()"></span></a>
+  <ul class="dropdown-menu">
+   <input style="width: 37px" id="upTrilling" type="number" min="23" max="38" step="3" value="0">
+   <button id="okButton" class="btn btn-primary" onclick="resultTrillingUp()">OK</button>
+</ul>
+
+</li>
+
+<!-- columnn hand -->        
+<li class="col-xs-1">
+  <a class="dropdown-toggle" data-toggle="dropdown" href="">
+  <span id="handTrillingValue" class="caret" onclick="handTrilling()"></span></a>
+  <ul class="dropdown-menu">
+   <input style="width: 37px" id="handTrilling" type="number" min="23" max="38" step="3" value="0">
+   <button id="okButton" class="btn btn-primary" onclick="resultTrillingHand()">OK</button>
+</ul>
+
+</li>
+
+    <li id="lightGrey" class="col-xs-1"></li> 
+  </ul>       
+</div>
+<!-- END of TRILLING row -->
+
+<!-- FULL HOUSE -->
+<div class="row"> 
+      <ul class="right">
+        <li id="grey" class="col-xs-1">FULL</li> 
+
+<!-- column down -->        
+<li class="col-xs-1">
+  <a class="dropdown-toggle" data-toggle="dropdown" href="">
+  <span id="downFullValue" class="caret" onclick="downFull()"></span></a>
+  <ul class="dropdown-menu">
+    <input style="width: 37px" id="downFull" type="number" min="37" max="58" value="0">
+    <button style="width: 70px" id="okButton" class="btn btn-primary" onclick="resultFullDown()">OK</button>
+  </ul>
+  
+</li>                                                       
+  
+<!-- column free -->
+<li class="col-xs-1">
+  <a class="dropdown-toggle" data-toggle="dropdown" href="">
+  <span id="freeFullValue" class="caret" onclick="freeFull()"></span></a>
+  <ul class="dropdown-menu">
+   <input style="width: 37px" id="freeFull" type="number" min="37" max="58" value="0">
+   <button id="okButton" class="btn btn-primary" onclick="resultFullFree()">OK</button>
+  </ul>
+  
+</li>
+  
+<!-- column up -->        
+<li class="col-xs-1">
+  <a class="dropdown-toggle" data-toggle="dropdown" href="">
+  <span id="upFullValue" class="caret" onclick="upFull()"></span></a>
+  <ul class="dropdown-menu">
+   <input style="width: 37px" id="upFull" type="number" min="37" max="58" value="0">
+   <button id="okButton" class="btn btn-primary" onclick="resultFullUp()">OK</button>
+  </ul>
+  
+</li>
+  
+<!-- columnn hand -->        
+<li class="col-xs-1">
+  <a class="dropdown-toggle" data-toggle="dropdown" href="">
+  <span id="handFullValue" class="caret" onclick="handFull()"></span></a>
+  <ul class="dropdown-menu">
+   <input style="width: 37px" id="handFull" type="number" min="37" max="58" value="0">
+   <button id="okButton" class="btn btn-primary" onclick="resultFullHand()">OK</button>
+  </ul>
+  
+</li>
+        <li id="lightGrey" class="col-xs-1"></li> 
+
+      </ul>       
+</div>
+<!-- END of hull house row -->
+
+<!--Poker -->
+<div class="row"> 
+      <ul class="right">
+        <li id="grey" class="col-xs-1">POKER</li> 
+
+<!-- column down -->        
+<li class="col-xs-1">
+  <a class="dropdown-toggle" data-toggle="dropdown" href="">
+  <span id="downPokerValue" class="caret" onclick="downPoker()"></span></a>
+  <ul class="dropdown-menu">
+    <input style="width: 37px" id="downPoker" type="number" min="44" max="64" step="4" value="0">
+    <button style="width: 70px" id="okButton" class="btn btn-primary" onclick="resultPokerDown()">OK</button>
+  </ul>
+  
+</li>                                                       
+  
+<!-- column free -->
+<li class="col-xs-1">
+  <a class="dropdown-toggle" data-toggle="dropdown" href="">
+  <span id="freePokerValue" class="caret" onclick="freePoker()"></span></a>
+  <ul class="dropdown-menu">
+   <input style="width: 37px" id="freePoker" type="number" min="44" max="64" step="4" value="0">
+   <button id="okButton" class="btn btn-primary" onclick="resultPokerFree()">OK</button>
+  </ul>
+  
+</li>
+  
+<!-- column up -->        
+<li class="col-xs-1">
+  <a class="dropdown-toggle" data-toggle="dropdown" href="">
+  <span id="upPokerValue" class="caret" onclick="upPoker()"></span></a>
+  <ul class="dropdown-menu">
+   <input style="width: 37px" id="upPoker" type="number" min="44" max="64" step="4" value="0">
+   <button id="okButton" class="btn btn-primary" onclick="resultPokerUp()">OK</button>
+  </ul>
+  
+</li>
+  
+<!-- columnn hand -->        
+<li class="col-xs-1">
+  <a class="dropdown-toggle" data-toggle="dropdown" href="">
+  <span id="handPokerValue" class="caret" onclick="handPoker()"></span></a>
+  <ul class="dropdown-menu">
+   <input style="width: 37px" id="handPoker" type="number" min="44" max="64" step="4" value="0">
+   <button id="okButton" class="btn btn-primary" onclick="resultPokerHand()">OK</button>
+  </ul>
+  
+</li>
+
+
+        <li id="lightGrey" class="col-xs-1"></li> 
+
+      </ul>       
+</div>
+<!-- END of poker row -->
+
+<!-- JAMB -->
+<div class="row"> 
+      <ul class="right">
+        <li id="grey" class="col-xs-1">JAMB</li> 
+
+<!-- column down -->        
+<li class="col-xs-1">
+  <a class="dropdown-toggle" data-toggle="dropdown" href="">
+  <span id="downJambValue" class="caret" onclick="downJamb()"></span></a>
+  <ul class="dropdown-menu">
+    <input style="width: 37px" id="downJamb" type="number" min="55" max="80" step="5" value="0">
+    <button style="width: 70px" id="okButton" class="btn btn-primary" onclick="resultJambDown()">OK</button>
+  </ul>
+          
+</li>                                                       
+          
+<!-- column free -->
+<li class="col-xs-1">
+  <a class="dropdown-toggle" data-toggle="dropdown" href="">
+  <span id="freeJambValue" class="caret" onclick="freeJamb()"></span></a>
+  <ul class="dropdown-menu">
+    <input style="width: 37px" id="freeJamb" type="number" min="55" max="80" step="5" value="0">
+    <button id="okButton" class="btn btn-primary" onclick="resultJambFree()">OK</button>
+  </ul>
+          
+</li>
+          
+<!-- column up -->        
+<li class="col-xs-1">
+  <a class="dropdown-toggle" data-toggle="dropdown" href="">
+  <span id="upJambValue" class="caret" onclick="upJamb()"></span></a>
+  <ul class="dropdown-menu">
+    <input style="width: 37px" id="upJamb" type="number" min="55" max="80" step="5" value="0">
+    <button id="okButton" class="btn btn-primary" onclick="resultJambUp()">OK</button>
+  </ul>
+          
+</li>
+          
+<!-- columnn hand -->        
+<li class="col-xs-1">
+  <a class="dropdown-toggle" data-toggle="dropdown" href="">
+  <span id="handJambValue" class="caret" onclick="handJamb()"></span></a>
+  <ul class="dropdown-menu">
+    <input style="width: 37px" id="handJamb" type="number" min="55" max="80" step="5" value="0">
+    <button id="okButton" class="btn btn-primary" onclick="resultJambHand()">OK</button>
+  </ul>
+          
+</li>
+
+        <li id="lightGrey" class="col-xs-1"></li> 
+      </ul>       
+</div>
+<!-- END of jamb row -->
+
+<!-- SUM of the third part -->
+<div class="row">
+      <ul class="right">
+       <li id="grey" class="col-xs-1">SUM</li>
+       <li id="grey" class="sumDown2 col-xs-1"></li>
+       <li id="grey" class="sumFree2 col-xs-1"></li>
+       <li id="grey" class="sumUp2 col-xs-1"></li>
+       <li id="grey" class="sumHand2 col-xs-1"></li>
+       <li id="grey" class="sumAll3 col-xs-1"></li>             
+      </ul> 
+</div>     
+
+<div class="row">
+      <ul class="right">
+       <li id="grey" class="col-xs-1">TOTAL</li>
+       <li id="lightGrey" class="col-xs-1"></li>
+       <li id="lightGrey" class="col-xs-1"></li>
+       <li id="lightGrey" class="col-xs-1"></li>
+       <li id="lightGrey" class="col-xs-1"></li>
+       <!-- TOTAL SUM field -->
+       <li id="grey" class="totalSum col-xs-1"></li>             
+      </ul> 
+</div>  
+
+</div>
+<!-- end first player -->
+
+    
+<!-- buttons -->
+<div class="col-xs-12 col-sm-4">
+
+     <div class="col-xs-12">
+      <img class="dice1" id="dicing1" src="pictures/dice-1.png" onmouseover="readText()" onclick="stayInGame1()" ondblclick="stayTheSame1()">
+      <img class="dice2" id="dicing2" src="pictures/dice-2.png" onmouseover="readText()" onclick="stayInGame2()" ondblclick="stayTheSame2()">
+      <img class="dice3" id="dicing3" src="pictures/dice-3.png" onmouseover="readText()" onclick="stayInGame3()" ondblclick="stayTheSame3()">        
+     </div>
+
+     <div class="col-xs-12">
+      <img class="dice4" id="dicing4" src="pictures/dice-4.png" onmouseover="readText()" onclick="stayInGame4()" ondblclick="stayTheSame4()">
+      <img class="dice5" id="dicing5" src="pictures/dice-5.png" onmouseover="readText()" onclick="stayInGame5()" ondblclick="stayTheSame5()">
+      <img class="dice6" id="dicing6" src="pictures/dice-6.png" onmouseover="readText()" onclick="stayInGame6()" ondblclick="stayTheSame6()">                              
+     </div>
+
+     <div class="col-xs-12">
+      <button id="butt" class="btn btn-primary btn-roll">Roll Dices</button>
+      <button id="but" class="btn btn-success btn-scnd">Second Roll</button>
+      <button id="but" class="btn btn-warning btn-last">Third Roll</button>      
+      <button id="butt" class="btn btn-primary btn-hold" onclick="nextPlayer()">Next Player</button>
+      <a style="margin-top: 100px;" id="butt" class="btn btn-danger btn-new" href="playJamb.html">New game</a>          
+     </div>
+							
+</div>  
+<!-- END of BUTTONS part -->    		
+
+ 
+<!-- second player -->
+<div id="player2active" class="player-1 activePl col-xs-12 col-sm-4">
+	 <div id="player-panel" class="nextPl2">Player 2</div>
+
+ 
+      <div class="row">
+       <ul class="right">
+        <li id="grey" class="col-xs-1">GAME</li>
+        <li id="grey" class="col-xs-1">DOWN</li>
+        <li id="grey" class="col-xs-1">FREE</li>
+        <li id="grey" class="col-xs-1">UP</li>
+        <li id="grey" class="col-xs-1">HAND</li>
+        <li id="grey" class="col-xs-1">SUM</li>             
+       </ul> 
+      </div>
+ 
+     
+ <!-- first row - number 1 -->
+ <div class="row"> 
+       <ul class="right">
+         <li id="grey" class="col-xs-1">1</li> 
+ 
+ <!-- column down -->
+ <li class="col-xs-1">
+   <a class="dropdown-toggle" data-toggle="dropdown" href="">
+   <span id="downOneValue2" class="caret" onclick="downOne2()"></span></a>
+   <ul class="dropdown-menu">
+     <input style="width: 35px;" id="down12" type="number" min="0" max="5" value="0">
+     <button id="okButton" class="btn btn-primary" onclick="resultOneDown2()">OK</button>
+   </ul>
+ </li>                                                          
+ <!-- end of column down -->
+ 
+ <!-- column free -->
+ <li class="col-xs-1">
+   <a class="dropdown-toggle" data-toggle="dropdown" href="">
+   <span id="freeOneValue2" class="caret" onclick="freeOne2()"></span></a>
+   <ul class="dropdown-menu">
+      <input style="width: 35px;" id="free12" type="number" min="0" max="5" value="0">
+      <button id="okButton" class="btn btn-primary" onclick="resultOneFree2()">OK</button>
+   </ul>
+ </li> 
+ <!-- end of column free -->
+ 
+ <!-- column up -->
+ <li class="col-xs-1">
+   <a class="dropdown-toggle" data-toggle="dropdown" href="">
+   <span id="upOneValue2" class="caret" onclick="upOne2()"></span></a>
+   <ul class="dropdown-menu">
+      <input style="width: 35px;" id="up12" type="number" min="0" max="5" value="0">
+      <button id="okButton" class="btn btn-primary" onclick="resultOneUp2()">OK</button>
+   </ul>
+ </li> 
+ <!-- end of column up -->
+ 
+ <!-- column hand -->
+ <li class="col-xs-1">
+   <a class="dropdown-toggle" data-toggle="dropdown" href="">
+   <span id="handOneValue2" class="caret" onclick="handOne2()"></span></a>
+   <ul class="dropdown-menu">
+      <input style="width: 35px;" id="hand12" type="number" min="0" max="5" value="0">
+      <button id="okButton" class="btn btn-primary" onclick="resultOneHand2()">OK</button>
+   </ul>
+ </li> 
+ <!-- end of column hand -->
+ 
+         <li id="lightGrey" class="col-xs-1"></li> 
+       </ul>       
+ </div>
+ <!-- END of the first row - number 1 -->
+ 
+ <!-- second row - number 2 -->
+ <div class="row">
+       <ul class="right">
+         <li id="grey" class="col-xs-1">2</li> 
+ 
+ <!-- column down 2-->
+ <li class="col-xs-1">
+   <a class="dropdown-toggle" data-toggle="dropdown" href="">
+   <span id="downTwoValue2" class="caret one" onclick="downTwo2()"></span></a>
+   <ul class="dropdown-menu">
+    <input style="width: 37px;" id="down22" type="number" min="0" max="10" step="2" value="0">
+    <button id="okButton" class="btn btn-primary" onclick="resultTwoDown2()">OK</button>
+  </ul>
+ </li>  
+ <!-- end of column down -->
+ 
+ <!-- column free 2-->
+ <li class="col-xs-1">
+   <a class="dropdown-toggle" data-toggle="dropdown" href="">
+   <span id="freeTwoValue2" class="caret one" onclick="freeTwo2()"></span></a>
+   <ul class="dropdown-menu">
+     <input style="width: 37px;" id="free22" type="number" min="0" max="10" step="2" value="0">
+     <button id="okButton" class="btn btn-primary" onclick="resultTwoFree2()">OK</button>
+   </ul>
+   </li>  
+ <!-- end of column free -->
+ 
+ <!-- column up 2-->
+ <li class="col-xs-1">
+   <a class="dropdown-toggle" data-toggle="dropdown" href="">
+   <span id="upTwoValue2" class="caret" onclick="upTwo2()"></span></a>
+   <ul class="dropdown-menu">
+     <input style="width: 37px;" id="up22" type="number" min="0" max="10" step="2" value="0">
+     <button id="okButton" class="btn btn-primary" onclick="resultTwoUp2()">OK</button>
+   </ul>
+ </li>  
+ <!-- end of column up -->
+ 
+ <!-- column hand 2-->
+ <li class="col-xs-1">
+   <a class="dropdown-toggle" data-toggle="dropdown" href="">
+   <span id="handTwoValue2" class="caret" onclick="handTwo2()"></span></a>
+   <ul class="dropdown-menu">
+     <input style="width: 37px;" id="hand22" type="number" min="0" max="10" step="2" value="0">
+     <button id="okButton" class="btn btn-primary" onclick="resultTwoHand2()">OK</button>
+   </ul>
+ </li>  
+ <!-- end of column hand -->
+ 
+         <li id="lightGrey" class="col-xs-1"></li> 
+       </ul>       
+ </div>
+ <!-- END of the second row - number 2 -->
+ 
+ <!-- third row - number 3 -->
+ <div class="row"> 
+       <ul class="right">
+         <li id="grey" class="col-xs-1">3</li> 
+ 
+ <!-- column down 3-->
+ <li class="col-xs-1">
+   <a class="dropdown-toggle" data-toggle="dropdown" href="">
+   <span id="downThreeValue2" class="caret" onclick="downThree2()"></span></a>
+   <ul class="dropdown-menu">
+     <input style="width: 37px;" id="down32" type="number"  min="0" max="15" step="3" value="0">
+     <button id="okButton" class="btn btn-primary" onclick="resultThreeDown2()">OK</button>
+   </ul>
+ </li>                                                       
+ <!-- end of column down -->
+ 
+ <!-- column free 3-->
+ <li class="col-xs-1">
+     <a class="dropdown-toggle" data-toggle="dropdown" href="">
+     <span id="freeThreeValue2" class="caret" onclick="freeThree2()"></span></a>
+     <ul class="dropdown-menu">
+       <input style="width: 37px;" id="free32" type="number"  min="0" max="15" step="3" value="0">
+       <button id="okButton" class="btn btn-primary" onclick="resultThreeFree2()">OK</button>
+     </ul>
+   </li>                                                       
+   <!-- end of column free -->
+ 
+   <!-- column up 3-->
+ <li class="col-xs-1">
+     <a class="dropdown-toggle" data-toggle="dropdown" href="">
+     <span id="upThreeValue2" class="caret" onclick="upThree2()"></span></a>
+     <ul class="dropdown-menu">
+       <input style="width: 37px;" id="up32" type="number"  min="0" max="15" step="3" value="0">
+       <button id="okButton" class="btn btn-primary" onclick="resultThreeUp2()">OK</button>
+     </ul>
+   </li>                                                       
+   <!-- end of column up -->
+ 
+ <!-- column hand 3-->
+ <li class="col-xs-1">
+     <a class="dropdown-toggle" data-toggle="dropdown" href="">
+     <span id="handThreeValue2" class="caret" onclick="handThree2()"></span></a>
+     <ul class="dropdown-menu">
+       <input style="width: 37px;" id="hand32" type="number"  min="0" max="15" step="3" value="0">
+       <button id="okButton" class="btn btn-primary" onclick="resultThreeHand2()">OK</button>
+     </ul>
+   </li>                                                       
+   <!-- end of column hand -->
+ 
+         <li id="lightGrey" class="col-xs-1"></li> 
+       </ul>       
+ </div>
+ <!-- END of the third row - number 3 -->
+ 
+ <!-- fourth row - number 4 -->
+ <div class="row"> 
+       <ul class="right">
+         <li id="grey" class="col-xs-1">4</li> 
+ 
+ <!-- column down 4 -->
+ <li class="col-xs-1">
+   <a class="dropdown-toggle" data-toggle="dropdown" href="">
+   <span id="downFourValue2" class="caret" onclick="downFour2()"></span></a>
+   <ul class="dropdown-menu">
+     <input style="width: 37px;" id="down42" type="number" min="0" max="20" step="4" value="0">
+     <button id="okButton" class="btn btn-primary" onclick="resultFourDown2()">OK</button>
+   </ul>
+ </li>                                                           
+ <!-- end of column down -->
+ 
+ <!-- column free 4 -->
+ <li class="col-xs-1">
+     <a class="dropdown-toggle" data-toggle="dropdown" href="">
+     <span id="freeFourValue2" class="caret" onclick="freeFour2()"></span></a>
+     <ul class="dropdown-menu">
+       <input style="width: 37px;" id="free42" type="number" min="0" max="20" step="4" value="0">
+       <button id="okButton" class="btn btn-primary" onclick="resultFourFree2()">OK</button>
+     </ul>
+ </li>  
+ <!-- end of column free -->
+ 
+ <!-- column up 4 -->
+ <li class="col-xs-1">
+     <a class="dropdown-toggle" data-toggle="dropdown" href="">
+     <span id="upFourValue2" class="caret" onclick="upFour2()"></span></a>
+     <ul class="dropdown-menu">
+       <input style="width: 37px;" id="up42" type="number" min="0" max="20" step="4" value="0">
+       <button id="okButton" class="btn btn-primary" onclick="resultFourUp2()">OK</button>
+     </ul>
+   </li>  
+ <!-- end of column up -->
+ 
+ <!--column hand 4 -->
+ <li class="col-xs-1">
+     <a class="dropdown-toggle" data-toggle="dropdown" href="">
+     <span id="handFourValue2" class="caret" onclick="handFour2()"></span></a>
+     <ul class="dropdown-menu">
+       <input style="width: 37px;" id="hand42" type="number" min="0" max="20" step="4" value="0">
+       <button id="okButton" class="btn btn-primary" onclick="resultFourHand2()">OK</button>
+     </ul>
+ </li>  
+ <!-- end of column hand -->
+ 
+         <li id="lightGrey" class="col-xs-1"></li> 
+       </ul>       
+ </div>
+ <!-- END of the fourth row - number 4 -->
+ 
+ <!-- fifth row - number 5 -->
+ <div class="row"> 
+       <ul class="right">
+         <li id="grey" class="col-xs-1">5</li> 
+ 
+ <!-- column down 5 -->
+ <li class="col-xs-1">
+   <a class="dropdown-toggle" data-toggle="dropdown" href="">
+   <span id="downFiveValue2" class="caret" onclick="downFive2()"></span></a>
+   <ul class="dropdown-menu">
+     <input style="width: 37px;" id="down52" type="number" min="0" max="25" step="5" value="0">
+     <button id="okButton" class="btn btn-primary" onclick="resultFiveDown2()">OK</button>
+   </ul>
+ </li>                                                           
+ <!-- end of column down -->
+ 
+ <!-- column free 5 -->
+ <li class="col-xs-1">
+     <a class="dropdown-toggle" data-toggle="dropdown" href="">
+     <span id="freeFiveValue2" class="caret" onclick="freeFive2()"></span></a>
+     <ul class="dropdown-menu">
+       <input style="width: 37px;" id="free52" type="number" min="0" max="25" step="5" value="0">
+       <button id="okButton" class="btn btn-primary" onclick="resultFiveFree2()">OK</button>
+     </ul>
+ </li>                                                           
+ <!-- end of column free -->
+ 
+ <!-- column up 5 -->
+ <li class="col-xs-1">
+     <a class="dropdown-toggle" data-toggle="dropdown" href="">
+     <span id="upFiveValue2" class="caret" onclick="upFive2()"></span></a>
+     <ul class="dropdown-menu">
+       <input style="width: 37px;" id="up52" type="number" min="0" max="25" step="5" value="0">
+       <button id="okButton" class="btn btn-primary" onclick="resultFiveUp2()">OK</button>
+     </ul>
+ </li>                                                           
+ <!-- end of column up -->
+ 
+ <!-- column hand 5 -->
+ <li class="col-xs-1">
+     <a class="dropdown-toggle" data-toggle="dropdown" href="">
+     <span id="handFiveValue2" class="caret" onclick="handFive2()"></span></a>
+     <ul class="dropdown-menu">
+       <input style="width: 37px;" id="hand52" type="number" min="0" max="25" step="5" value="0">
+       <button id="okButton" class="btn btn-primary" onclick="resultFiveHand2()">OK</button>
+     </ul>
+ </li>                                                           
+ <!-- end of column down -->
+ 
+         <li id="lightGrey" class="col-xs-1"></li> 
+       </ul>       
+ </div>
+ <!-- END of the fifth row - number 3 -->
+ 
+ <!-- sixth row -->
+ <div class="row"> 
+       <ul class="right">
+         <li id="grey" class="col-xs-1">6</li> 
+ 
+ <!-- column down 6 -->
+ <li class="col-xs-1">
+   <a class="dropdown-toggle" data-toggle="dropdown" href="">
+   <span id="downSixValue2" class="caret" onclick="downSix2()"></span></a>
+   <ul class="dropdown-menu">
+     <input style="width: 37px;" id="down62" type="number" min="0" max="30" step="6" value="0">
+     <button id="okButton" class="btn btn-primary" onclick="resultSixDown2()">OK</button>
+   </ul>
+ </li>                                                            
+ <!-- end of column down 6 -->
+ 
+ <!-- column free 6 -->
+ <li class="col-xs-1">
+     <a class="dropdown-toggle" data-toggle="dropdown" href="">
+     <span id="freeSixValue2" class="caret" onclick="freeSix2()"></span></a>
+     <ul class="dropdown-menu">
+       <input style="width: 37px;" id="free62" type="number" min="0" max="30" step="6" value="0">
+       <button id="okButton" class="btn btn-primary" onclick="resultSixFree2()">OK</button>
+     </ul>
+ </li>                                                            
+ <!-- end of column free 6 -->
+ 
+ <!-- column up 6 -->
+ <li class="col-xs-1">
+     <a class="dropdown-toggle" data-toggle="dropdown" href="">
+     <span id="upSixValue2" class="caret" onclick="upSix2()"></span></a>
+     <ul class="dropdown-menu">
+       <input style="width: 37px;" id="up62" type="number" min="0" max="30" step="6" value="0">
+       <button id="okButton" class="btn btn-primary" onclick="resultSixUp2()">OK</button>
+     </ul>
+   </li>                                                            
+   <!-- end of column up 6 -->
+ 
+ <!-- column hand 6 -->
+ <li class="col-xs-1">
+     <a class="dropdown-toggle" data-toggle="dropdown" href="">
+     <span id="handSixValue2" class="caret" onclick="handSix2()"></span></a>
+     <ul class="dropdown-menu">
+       <input style="width: 37px;" id="hand62" type="number" min="0" max="30" step="6" value="0">
+       <button id="okButton" class="btn btn-primary" onclick="resultSixHand2()">OK</button>
+     </ul>
+ </li>                                                            
+ <!-- end of column hand 6 -->  
+ 
+         <li id="lightGrey" class="col-xs-1"></li> 
+       </ul>       
+ </div>
+ <!-- END of the sixth row - number 6 -->
+ 
+ <!-- sum of the first part -->
+ <div class="row">
+       <ul class="right">
+        <li id="grey" class="col-xs-1">SUM</li>
+        <li id="grey" class="sumDownFirst2 col-xs-1"></li>
+        <li id="grey" class="sumFreeFirst2 col-xs-1"></li>
+        <li id="grey" class="sumUpFirst2 col-xs-1"></li>
+        <li id="grey" class="sumHandFirst2 col-xs-1"></li>
+        <li id="grey" class="sumAllFirst2 col-xs-1"></li>             
+       </ul> 
+ </div> 
+ <!-- end of the first part -->
+ 
+ <!-- maximum and minimum - second part -->
+ <!-- MAXIMUM ROW -->
+ <div class="row"> 
+       <ul class="right">
+         <li id="grey" class="col-xs-1">MAX</li> 
+ 
+ <!-- MAXIMUM column DOWN-->
+ <li class="col-xs-1">
+   <a class="dropdown-toggle" data-toggle="dropdown" href="">
+   <span id="downMaximum2" class="caret" onclick="downMax2()"></span></a>
+   <ul class="dropdown-menu">
+       <input style="width: 37px;" id="maximumDown2" type="number" max="30" min="5" value="30">
+       <button id="okButton" class="btn btn-primary" onclick="maxResult2()">OK</button>          
+   </ul>
+ </li>                                                          
+ 
+ <!-- MAXIMUM column FREE -->
+ <li class="col-xs-1">
+   <a class="dropdown-toggle" data-toggle="dropdown" href="">
+   <span id="freeMaximum2" class="caret" onclick="freeMax2()"></span></a>
+   <ul class="dropdown-menu">
+     <input style="width: 37px;" id="maximumFree2" type="number" max="30" min="5"  value="30">
+     <button id="okButton" class="btn btn-primary" onclick="maxResultFree2()">OK</button>          
+   </ul>
+ </li>
+ 
+ <!-- MAXIMUM column UP-->
+ <li class="col-xs-1">
+   <a class="dropdown-toggle" data-toggle="dropdown" href="">
+   <span id="upMaximum2" class="caret" onclick="upMax2()"></span></a>
+   <ul class="dropdown-menu">
+     <input style="width: 37px;" id="maximumUp2" type="number" max="30" min="5" value="30">
+     <button id="okButton" class="btn btn-primary" onclick="maxResultUp2()">OK</button>          
+   </ul>
+ </li>
+ 
+ <!-- MAXIMUM column HAND-->
+ <li class="col-xs-1">
+   <a class="dropdown-toggle" data-toggle="dropdown" href="">
+   <span id="handMaximum2" class="caret" onclick="handMax2()"></span></a>
+   <ul class="dropdown-menu">
+     <input style="width: 37px;" id="maximumHand2" type="number" max="30" min="5" value="30">
+     <button id="okButton" class="btn btn-primary" onclick="maxResultHand2()">OK</button>          
+   </ul>
+ </li>
+ 
+         <li id="lightGrey" class="col-xs-1"></li> 
+       </ul>       
+ </div>
+ <!-- END of MAXIMUM row -->
+ 
+ 
+ <!-- MINIMUM ROW -->
+ <div class="row"> 
+       <ul class="right">
+         <li id="grey" class="col-xs-1">MIN</li> 
+ 
+ <!-- MINIMUM column DOWN-->
+ <li class="col-xs-1">
+   <a class="dropdown-toggle" data-toggle="dropdown" href="">
+   <span id="downMinimum2" class="caret" onclick="downMin2()"></span></a>
+   <ul class="dropdown-menu">
+     <input style="width: 37px" id="minimumDown2" type="number" min="5" max="30" value="5">
+     <button id="okButton" class="btn btn-primary" onclick="minResultDown2()">OK</button>      
+   </ul>
+ </li>                                                          
+ 
+ <!-- MINIMUM column FREE-->
+ <li class="col-xs-1">
+   <a class="dropdown-toggle" data-toggle="dropdown" href="">
+   <span id="freeMinimum2" class="caret" onclick="freeMin2()"></span></a>
+   <ul class="dropdown-menu">
+     <input style="width: 37px" id="minimumFree2" type="number" min="5" max="30" value="5">
+     <button id="okButton" class="btn btn-primary" onclick="minResultFree2()">OK</button>      
+   </ul>
+ </li>  
+ 
+ <!-- MINIMUM column UP-->
+ <li class="col-xs-1">
+   <a class="dropdown-toggle" data-toggle="dropdown" href="">
+   <span id="upMinimum2" class="caret" onclick="upMin2()"></span></a>
+     <ul class="dropdown-menu">
+       <input style="width: 37px" id="minimumUp2" type="number" min="5" max="30" value="5">
+       <button id="okButton" class="btn btn-primary" onclick="minResultUp2()">OK</button>      
+     </ul>
+ </li>  
+ 
+ <!-- MINIMUM column HAND-->
+ <li class="col-xs-1">
+   <a class="dropdown-toggle" data-toggle="dropdown" href="">
+   <span id="handMinimum2" class="caret" onclick="handMin2()"></span></a>
+   <ul class="dropdown-menu">
+     <input style="width: 37px" id="minimumHand2" type="number" min="5" max="30" value="5">
+     <button id="okButton" class="btn btn-primary" onclick="minResultHand2()">OK</button>      
+   </ul>
+ </li>  
+ 
+         <li id="lightGrey" class="col-xs-1"></li> 
+       </ul>       
+ </div>
+ <!-- END of MINIMUM row -->
+ 
+ <!-- sum of the second part -->
+ <div class="row">
+       <ul class="right">
+        <li id="grey" class="col-xs-1">SUM</li>
+        <li id="grey" class="mulDown12 col-xs-1"></li>
+        <li id="grey" class="mulFree12 col-xs-1"></li>
+        <li id="grey" class="mulUp12 col-xs-1"></li>
+        <li id="grey" class="mulHand12 col-xs-1"></li>
+        <li id="grey" class="mulAll12 col-xs-1"></li>             
+       </ul> 
+ </div> 
+ 
+ 
+ <!-- Third part -->
+ <!-- KENTA -->
+ <div class="row"> 
+       <ul class="right">
+         <li id="grey" class="col-xs-1">KENTA</li> 
+ 
+ <!-- column down -->        
+ <li class="col-xs-1">
+   <a class="dropdown-toggle" data-toggle="dropdown" href="">
+   <span id="downKentaValue2" class="caret" onclick="downKenta2()"></span></a>
+   <ul class="dropdown-menu">
+     <input style="width: 37px" id="downKenta2" type="number" min="46" max="66" step="10" value="0">
+     <button id="okButton" class="btn btn-primary" onclick="resultKentaDown2()">OK</button>
+   </ul>
+   
+ </li>                                                       
+ 
+ <!-- column free -->
+ <li class="col-xs-1">
+   <a class="dropdown-toggle" data-toggle="dropdown" href="">
+   <span id="freeKentaValue2" class="caret" onclick="freeKenta2()"></span></a>
+   <ul class="dropdown-menu">
+     <input style="width: 37px" id="freeKenta2" type="number" min="46" max="66" step="10" value="0">
+     <button id="okButton" class="btn btn-primary" onclick="resultKentaFree2()">OK</button>
+   </ul>
+   
+ </li>
+ 
+ <!-- column up -->        
+ <li class="col-xs-1">
+   <a class="dropdown-toggle" data-toggle="dropdown" href="">
+   <span id="upKentaValue2" class="caret" onclick="upKenta2()"></span></a>
+   <ul class="dropdown-menu">
+     <input style="width: 37px" id="upKenta2" type="number" min="46" max="66" step="10" value="0">
+     <button id="okButton" class="btn btn-primary" onclick="resultKentaUp2()">OK</button>
+   </ul>
+   
+ </li>
+ 
+ <!-- columnn hand -->        
+ <li class="col-xs-1">
+   <a class="dropdown-toggle" data-toggle="dropdown" href="">
+   <span id="handKentaValue2" class="caret" onclick="handKenta2()"></span></a>
+   <ul class="dropdown-menu">
+     <input style="width: 37px" id="handKenta2" type="number" min="46" max="66" step="10" value="0">
+     <button id="okButton" class="btn btn-primary" onclick="resultKentaHand2()">OK</button>
+   </ul>
+   
+ </li>
+ 
+         <li id="lightGrey" class="col-xs-1"></li> 
+       </ul>       
+ </div>
+ <!-- END of KENTA row -->
+ 
+ <!-- TRILING -->
+ <div class="row"> 
+   <ul class="right">
+     <li id="grey" class="col-xs-1">TRILL</li> 
+ 
+ <!-- column down -->        
+ <li class="col-xs-1">
+   <a class="dropdown-toggle" data-toggle="dropdown" href="">
+   <span id="downTrillingValue2" class="caret" onclick="downTrilling2()"></span></a>
+   <ul class="dropdown-menu">
+     <input style="width: 37px" id="downTrilling2" type="number" min="23" max="38" step="3" value="0">
+     <button2 id="okButton" class="btn btn-primary" onclick="resultTrillingDown2()">OK</button>
+   </ul>
+ 
+ </li>                                                       
+ 
+ <!-- column free -->
+ <li class="col-xs-1">
+   <a class="dropdown-toggle" data-toggle="dropdown" href="">
+   <span id="freeTrillingValue2" class="caret" onclick="freeTrilling2()"></span></a>
+   <ul class="dropdown-menu">
+     <input style="width: 37px" id="freeTrilling2" type="number" min="23" max="38" step="3" value="0">
+     <button id="okButton" class="btn btn-primary" onclick="resultTrillingFree2()">OK</button>
+   </ul>
+ 
+ </li>
+ 
+ <!-- column up -->        
+ <li class="col-xs-1">
+   <a class="dropdown-toggle" data-toggle="dropdown" href="">
+   <span id="upTrillingValue2" class="caret" onclick="upTrilling2()"></span></a>
+   <ul class="dropdown-menu">
+    <input style="width: 37px" id="upTrilling2" type="number" min="23" max="38" step="3" value="0">
+    <button id="okButton" class="btn btn-primary" onclick="resultTrillingUp2()">OK</button>
+ </ul>
+ 
+ </li>
+ 
+ <!-- columnn hand -->        
+ <li class="col-xs-1">
+   <a class="dropdown-toggle" data-toggle="dropdown" href="">
+   <span id="handTrillingValue2" class="caret" onclick="handTrilling2()"></span></a>
+   <ul class="dropdown-menu">
+    <input style="width: 37px" id="handTrilling2" type="number" min="23" max="38" step="3" value="0">
+    <button id="okButton" class="btn btn-primary" onclick="resultTrillingHand2()">OK</button>
+ </ul>
+ 
+ </li>
+ 
+     <li id="lightGrey" class="col-xs-1"></li> 
+   </ul>       
+ </div>
+ <!-- END of TRILLING row -->
+ 
+ <!-- FULL HOUSE -->
+ <div class="row"> 
+       <ul class="right">
+         <li id="grey" class="col-xs-1">FULL</li> 
+ 
+ <!-- column down -->        
+ <li class="col-xs-1">
+   <a class="dropdown-toggle" data-toggle="dropdown" href="">
+   <span id="downFullValue2" class="caret" onclick="downFull2()"></span></a>
+   <ul class="dropdown-menu">
+     <input style="width: 37px" id="downFull2" type="number" min="37" max="58" value="0">
+     <button id="okButton" class="btn btn-primary" onclick="resultFullDown2()">OK</button>
+   </ul>
+   
+ </li>                                                       
+   
+ <!-- column free -->
+ <li class="col-xs-1">
+   <a class="dropdown-toggle" data-toggle="dropdown" href="">
+   <span id="freeFullValue2" class="caret" onclick="freeFull2()"></span></a>
+   <ul class="dropdown-menu">
+    <input style="width: 37px" id="freeFull2" type="number" min="37" max="58" value="0">
+    <button id="okButton" class="btn btn-primary" onclick="resultFullFree2()">OK</button>
+   </ul>
+   
+ </li>
+   
+ <!-- column up -->        
+ <li class="col-xs-1">
+   <a class="dropdown-toggle" data-toggle="dropdown" href="">
+   <span id="upFullValue2" class="caret" onclick="upFull2()"></span></a>
+   <ul class="dropdown-menu">
+    <input style="width: 37px" id="upFull2" type="number" min="37" max="58" value="0">
+    <button id="okButton" class="btn btn-primary" onclick="resultFullUp2()">OK</button>
+   </ul>
+   
+ </li>
+   
+ <!-- columnn hand -->        
+ <li class="col-xs-1">
+   <a class="dropdown-toggle" data-toggle="dropdown" href="">
+   <span id="handFullValue2" class="caret" onclick="handFull2()"></span></a>
+   <ul class="dropdown-menu">
+    <input style="width: 37px" id="handFull2" type="number" min="37" max="58" value="0">
+    <button id="okButton" class="btn btn-primary" onclick="resultFullHand2()">OK</button>
+   </ul>
+   
+ </li>
+         <li id="lightGrey" class="col-xs-1"></li> 
+ 
+       </ul>       
+ </div>
+ <!-- END of hull house row -->
+ 
+ <!--Poker -->
+ <div class="row"> 
+       <ul class="right">
+         <li id="grey" class="col-xs-1">POKER</li> 
+ 
+ <!-- column down -->        
+ <li class="col-xs-1">
+   <a class="dropdown-toggle" data-toggle="dropdown" href="">
+   <span id="downPokerValue2" class="caret" onclick="downPoker2()"></span></a>
+   <ul class="dropdown-menu">
+     <input style="width: 37px" id="downPoker2" type="number" min="44" max="64" step="4" value="0">
+     <button id="okButton" class="btn btn-primary" onclick="resultPokerDown2()">OK</button>
+   </ul>
+   
+ </li>                                                       
+   
+ <!-- column free -->
+ <li class="col-xs-1">
+   <a class="dropdown-toggle" data-toggle="dropdown" href="">
+   <span id="freePokerValue2" class="caret" onclick="freePoker2()"></span></a>
+   <ul class="dropdown-menu">
+    <input style="width: 37px" id="freePoker2" type="number" min="44" max="64" step="4" value="0">
+    <button id="okButton" class="btn btn-primary" onclick="resultPokerFree2()">OK</button>
+   </ul>
+   
+ </li>
+   
+ <!-- column up -->        
+ <li class="col-xs-1">
+   <a class="dropdown-toggle" data-toggle="dropdown" href="">
+   <span id="upPokerValue2" class="caret" onclick="upPoker2()"></span></a>
+   <ul class="dropdown-menu">
+    <input style="width: 37px" id="upPoker2" type="number" min="44" max="64" step="4" value="0">
+    <button id="okButton" class="btn btn-primary" onclick="resultPokerUp2()">OK</button>
+   </ul>
+   
+ </li>
+   
+ <!-- columnn hand -->        
+ <li class="col-xs-1">
+   <a class="dropdown-toggle" data-toggle="dropdown" href="">
+   <span id="handPokerValue2" class="caret" onclick="handPoker2()"></span></a>
+   <ul class="dropdown-menu">
+    <input style="width: 37px" id="handPoker2" type="number" min="44" max="64" step="4" value="0">
+    <button id="okButton" class="btn btn-primary" onclick="resultPokerHand2()">OK</button>
+   </ul>
+   
+ </li>
+ 
+ 
+         <li id="lightGrey" class="col-xs-1"></li> 
+ 
+       </ul>       
+ </div>
+ <!-- END of poker row -->
+ 
+ <!-- JAMB -->
+ <div class="row"> 
+       <ul class="right">
+         <li id="grey" class="col-xs-1">JAMB</li> 
+ 
+ <!-- column down -->        
+ <li class="col-xs-1">
+   <a class="dropdown-toggle" data-toggle="dropdown" href="">
+   <span id="downJambValue2" class="caret" onclick="downJamb2()"></span></a>
+   <ul class="dropdown-menu">
+     <input style="width: 37px" id="downJamb2" type="number" min="55" max="80" step="5" value="0">
+     <buttonid="okButton" class="btn btn-primary" onclick="resultJambDown2()">OK</button>
+   </ul>
+           
+ </li>                                                       
+           
+ <!-- column free -->
+ <li class="col-xs-1">
+   <a class="dropdown-toggle" data-toggle="dropdown" href="">
+   <span id="freeJambValue2" class="caret" onclick="freeJamb2()"></span></a>
+   <ul class="dropdown-menu">
+     <input style="width: 37px" id="freeJamb2" type="number" min="55" max="80" step="5" value="0">
+     <button id="okButton" class="btn btn-primary" onclick="resultJambFree2()">OK</button>
+   </ul>
+           
+ </li>
+           
+ <!-- column up -->        
+ <li class="col-xs-1">
+   <a class="dropdown-toggle" data-toggle="dropdown" href="">
+   <span id="upJambValue2" class="caret" onclick="upJamb2()"></span></a>
+   <ul class="dropdown-menu">
+     <input style="width: 37px" id="upJamb2" type="number" min="55" max="80" step="5" value="0">
+     <button id="okButton" class="btn btn-primary" onclick="resultJambUp2()">OK</button>
+   </ul>
+           
+ </li>
+           
+ <!-- columnn hand -->        
+ <li class="col-xs-1">
+   <a class="dropdown-toggle" data-toggle="dropdown" href="">
+   <span id="handJambValue2" class="caret" onclick="handJamb2()"></span></a>
+   <ul class="dropdown-menu">
+     <input style="width: 37px" id="handJamb2" type="number" min="55" max="80" step="5" value="0">
+     <button id="okButton" class="btn btn-primary" onclick="resultJambHand2()">OK</button>
+   </ul>
+           
+ </li>
+ 
+         <li id="lightGrey" class="col-xs-1"></li> 
+       </ul>       
+ </div>
+ <!-- END of jamb row -->
+ 
+ <!-- SUM of the third part -->
+ <div class="row">
+       <ul class="right">
+        <li id="grey" class="col-xs-1">SUM</li>
+        <li id="grey" class="sumDown22 col-xs-1"></li>
+        <li id="grey" class="sumFree22 col-xs-1"></li>
+        <li id="grey" class="sumUp22 col-xs-1"></li>
+        <li id="grey" class="sumHand22 col-xs-1"></li>
+        <li id="grey" class="sumAll32 col-xs-1"></li>             
+       </ul> 
+ </div>     
+ 
+ <div class="row">
+       <ul class="right">
+        <li id="grey" class="col-xs-1">TOTAL</li>
+        <li id="lightGrey" class="col-xs-1"></li>
+        <li id="lightGrey" class="col-xs-1"></li>
+        <li id="lightGrey" class="col-xs-1"></li>
+        <li id="lightGrey" class="col-xs-1"></li>
+        <!-- TOTAL SUM field -->
+        <li id="grey" class="totalSum2 col-xs-1"></li>             
+       </ul> 
+ </div>  
+ 
+ </div>
+ <!-- end first player -->
+
+</div>
+
+
+<script type="text/javascript" src="jQuery-3.3.1.min.js"></script>
+<script type="text/javascript" src="bootstrap.min.js"></script>
+<script type="text/javascript" src="playJamb.js"></script>
+<script type="text/javascript" src="playJambPlayers.js"></script>
+</body>
+</html>

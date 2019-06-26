@@ -1,0 +1,231 @@
+body {
+  margin-top: 50px;
+}
+
+#grey {
+  background-color: dodgerBlue;
+  color: white;
+  font-family: monospace;
+  font-weight: bolder;
+}
+
+.col-xs-1 {
+  float: left;
+  text-align: center;
+  width: 60px;
+  margin-right: auto;
+  margin-left: auto;
+  height: 25px;
+  border: 2px solid #333;
+  border-radius: 5px;
+  font-weight: bolder;
+}
+
+/*.right {
+	margin-left: -15px;
+}*/
+
+li {
+  list-style-type: none;
+}
+
+.caret {
+  border: 1px solid #333;
+  border-radius: 10px;
+  padding: 10px 25px;
+  margin-left: -13px;
+  box-shadow: 3px 3px 10px #333;
+}
+
+.dropdown-menu {
+  background: transparent;
+  height: 40px;
+}
+
+.dropdown-menu button {
+  width: 70px !important;
+  margin-left: -5px;
+}
+
+#game {
+  display: none;
+}
+
+#rules {
+  display: block;
+  border: 1px solid #333;
+  padding: 15px;
+  margin: 10px;
+  border-radius: 10px;
+  box-shadow: 5px 5px 15px #333;
+}
+
+#rules h2 {
+  font-family: "Rubik Mono One", sans-serif;
+  text-align: center;
+}
+#rules p {
+  font-family: "Merriweather", serif;
+  text-align: justify;
+}
+
+.rules-button {
+  width: 60%;
+  text-transform: capitalize;
+  font-size: 30px;
+  font-weight: bolder;
+  background: transparent;
+  border: 0.05rem solid blue;
+  border-color: lightblue;
+  color: dodgerBlue;
+  border-radius: 0.5rem;
+  padding: 0.2rem 0.5rem;
+  cursor: pointer;
+  margin: 0.5rem 20%;
+}
+.rules-button:hover {
+  background: lightblue;
+  color: blue;
+}
+.rules-button:focus {
+  outline: none;
+}
+
+#pointer {
+  border: 1px solid #333;
+  border-radius: 7px;
+  text-align: center;
+  cursor: pointer;
+  text-align: center;
+  margin-top: 3px;
+  margin-left: 20px;
+  margin-right: 20px;
+  font-weight: bolder;
+}
+
+.dice1,
+.dice2,
+.dice3,
+.dice4,
+.dice5,
+.dice6 {
+  float: left;
+  height: 110px;
+  margin: 15px 4px;
+  border: 2px solid #333;
+  border-radius: 5px;
+  box-shadow: 3px 3px 6px #333;
+  cursor: pointer;
+}
+
+input:focus {
+  outline: none;
+}
+
+.second {
+  float: left;
+  height: 120px;
+  margin: 5px 2px;
+  border: 2px solid #333;
+  border-radius: 5px;
+  box-shadow: 3px 3px 5px;
+  cursor: pointer;
+}
+
+#butt {
+  width: 60%;
+  margin-left: 20%;
+  margin-right: 20%;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+#but {
+  width: 40%;
+  margin-left: 4%;
+  margin-right: 4%;
+  margin-bottom: 10px;
+}
+#butt:hover,
+#but:hover {
+  font-size: 20px;
+  box-shadow: 5px 5px 15px #333;
+}
+#butt:focus,
+#but:focus {
+  outline: none;
+}
+
+button:focus {
+  outline: none;
+}
+
+.col-xs-1 {
+  margin: 2px;
+}
+
+.nextPl1 {
+  width: 80%;
+  margin-top: 15px;
+  margin-right: auto;
+  margin-left: auto;
+  margin-bottom: 10px;
+  padding-left: 20px;
+  font-size: 30px;
+  font-family: monospace;
+  font-weight: bold;
+  border: none;
+  box-shadow: 5px 5px 10px #333;
+  position: relative;
+}
+.nextPl2 {
+  width: 80%;
+  margin-top: 15px;
+  margin-right: auto;
+  margin-left: auto;
+  margin-bottom: 10px;
+  padding-left: 20px;
+  font-size: 30px;
+  font-family: monospace;
+  font-weight: bold;
+  border: none;
+  box-shadow: 5px 5px 10px #333;
+  position: relative;
+}
+
+.activePl {
+  font-weight: bolder;
+  margin-right: auto;
+  margin-left: auto;
+  background-color: lightGrey;
+  box-shadow: 5px 5px 15px solid #333;
+  border-radius: 15px;
+  margin-bottom: 20px;
+}
+
+#player1active,
+#player2active {
+  opacity: 0.5;
+}
+
+@media screen and (max-width: 420px) {
+  .col-xs-1 {
+    width: 80px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .header {
+    background-image: url("pictures/back.jpg");
+  }
+  #diceLook {
+    width: 100px;
+    height: 60px;
+    padding: 1px;
+    box-shadow: 5px 5px 15px white;
+  }
+  #headerLook {
+    font-size: 40px;
+    text-shadow: 5px 5px 15px white;
+  }
+}
